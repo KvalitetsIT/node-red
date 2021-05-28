@@ -25,7 +25,13 @@ jobs:
         pwd
         ls -la
     - name: Change dir to docker-custom
-      run: cd node-red-docker/docker-custom
+      run: |
+        pwd
+        ls -la
+        cd node-red-docker/docker-custom
+        pwd
+        ls -la
+      
     - name: Change Node.js to version 14
       run: |
         pwd
