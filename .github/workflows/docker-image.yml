@@ -22,7 +22,10 @@ jobs:
     - name: Change dir to docker-custom
       run: cd node-red-docker/docker-custom
     - name: Change Node.js to version 14
-      run: sed -i 's/NODE_VERSION=[0-9]*/NODE_VERSION=14/' docker-alpine.sh
+      run: |
+        pwd
+        ls -la
+        sed -i 's/NODE_VERSION=[0-9]*/NODE_VERSION=14/' docker-alpine.sh
     - name: Run build
       run: ./docker-alpine.sh
       
