@@ -18,7 +18,12 @@ jobs:
 
     steps:
     - name: Checkout node-red-docker for custum build
-      run: git clone https://github.com/node-red/node-red-docker.git
+      run: |
+        pwd
+        ls -la
+        git clone https://github.com/node-red/node-red-docker.git
+        pwd
+        ls -la
     - name: Change dir to docker-custom
       run: cd node-red-docker/docker-custom
     - name: Change Node.js to version 14
