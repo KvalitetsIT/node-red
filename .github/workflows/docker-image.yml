@@ -11,35 +11,19 @@ env:
   IMAGE_NAME: node-red
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout node-red-docker for custum build
+      run: git clone https://github.com/node-red/node-red-docker.git
+        
+    - name: Change Node.js to version 14 and build standard custum image
       run: |
-        pwd
-        ls -la
-        git clone https://github.com/node-red/node-red-docker.git
-        pwd
-        ls -la
-    - name: Change dir to docker-custom
-      run: |
-        pwd
-        ls -la
         cd node-red-docker/docker-custom
-        pwd
-        ls -la
-      
-    - name: Change Node.js to version 14
-      run: |
-        pwd
-        ls -la
         sed -i 's/NODE_VERSION=[0-9]*/NODE_VERSION=14/' docker-alpine.sh
-    - name: Run build
-      run: ./docker-alpine.sh
-      
+        ./docker-alpine.sh
+              
     - uses: actions/checkout@v2
     - name: Build the Docker image with dependencies enabled
       run: docker build . --file Dockerfile --tag kvalitetsit/node-red:$(date +%s)
